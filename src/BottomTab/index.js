@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import BottomTabContext from './BottomTabContext';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
     inactiveTintColor: String,
 }
 
-const TAB_BAR_HEIGHT = 150;
+const TAB_BAR_HEIGHT = 50;
 
 const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveTintColor }: Props) => {
     const [activeIndex, setActiveIndex] = useState(initialRouteIndex);
@@ -17,11 +17,10 @@ const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveT
     return (
         <BottomTabContext.Provider
             value={{
-                activeIndex: activeIndex,
                 updateActiveIndex: setActiveIndex,
             }}
         >
-            <View style={{ backgroundColor: 'transparent', height: TAB_BAR_HEIGHT, flexDirection: 'row', borderTopColor: 'grey', borderWidth: 0.5, borderColor: 'transparent' }}>
+            <View style={[styles.container, {height: TAB_BAR_HEIGHT}]}>
                 {React.Children.map(children, (child, index) => {
                     return React.cloneElement(child, {
                         onFocused: index === activeIndex,
@@ -35,5 +34,15 @@ const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveT
         </BottomTabContext.Provider>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        borderTopColor: 'grey',
+        borderWidth: 0.5,
+        borderColor: 'transparent',
+        marginTop: 'auto',
+    }
+});
 
 export default BottomTab;

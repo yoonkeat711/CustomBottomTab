@@ -19,16 +19,20 @@ const TabItem = ({ icon, index, iconStyle, text, textStyle, badge, onFocused, ac
     return (
         <BottomTabContext.Consumer>
             {context =>
-                <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => context.updateActiveIndex(index)}>
+                <TouchableOpacity style={styles.container} onPress={() => context.updateActiveIndex(index)}>
                     {
-                        badge && <View style={{ position: 'absolute', height: 20, width: 20, right: 10, borderRadius: 10, backgroundColor: 'red', alignItems: 'center', zIndex: 2 }}>
-                            <Text style={{ color: 'white', fontWeight: '500', alignContent: 'center' }}>{badge}</Text>
+                        badge && <View style={styles.badgeContainer}>
+                            <Text style={styles.badgeText}>{badge}</Text>
                         </View>
                     }
-                    <Image source={icon} resizeMode={'contain'}
+                    <Image
+                        source={icon}
+                        resizeMode={'contain'}
                         style={[styles.iconStyle, iconStyle, { tintColor: onFocused ? activeTintColor : inactiveTintColor }]}
                     />
-                    <Text style={[styles.fontSize, textStyle, { color: onFocused ? activeTintColor : inactiveTintColor }]}>{text}</Text>
+                    <Text style={[styles.fontSize, textStyle, { color: onFocused ? activeTintColor : inactiveTintColor }]}>
+                        {text}
+                    </Text>
                 </TouchableOpacity>
             }
         </BottomTabContext.Consumer>
@@ -36,6 +40,25 @@ const TabItem = ({ icon, index, iconStyle, text, textStyle, badge, onFocused, ac
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    badgeContainer: {
+        position: 'absolute',
+        height: 20,
+        width: 20,
+        right: 10,
+        borderRadius: 10,
+        backgroundColor: 'red',
+        alignItems: 'center',
+        zIndex: 2,
+    },
+    badgeText: {
+        color: 'white',
+        fontWeight: '500',
+        alignContent: 'center',
+    },
     iconStyle: {
         width: 30,
         height: 30,
