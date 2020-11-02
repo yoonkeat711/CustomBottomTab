@@ -10,25 +10,44 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
   StatusBar,
 } from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import BottomTab from './src/BottomTab';
+import TabItem from './src/BottomTab/TabItem';
+import ChatIcon from './src/assets/chat.png';
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1}}>
+      <BottomTab 
+      activeTintColor={'blue'}
+      inactiveTintColor={'grey'}
+      initialRouteIndex={0}
+      >
+        <TabItem 
+         icon={ChatIcon}
+         text={'Calls'}
+        />
+        <TabItem 
+         icon={ChatIcon}
+         text={'Chats'}
+         badge={3}
+        />
+         <TabItem 
+         icon={ChatIcon}
+         text={'Calls'}
+        />
+        <TabItem 
+         icon={ChatIcon}
+         text={'Calls'}
+        />
+        <TabItem 
+         icon={ChatIcon}
+         text={'Calls'}
+        />
+        </BottomTab>
       </SafeAreaView>
     </>
   );
