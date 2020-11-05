@@ -12,14 +12,15 @@ type Props = {
     oFocused: Boolean,
     activeTintColor: String,
     inactiveTintColor: String,
+    screen: String,
 }
 
-const TabItem = ({ icon, index, iconStyle, text, textStyle, badge, onFocused, activeTintColor, inactiveTintColor }: Props) => {
+const TabItem = ({ icon, index, iconStyle, text, textStyle, badge, onFocused, activeTintColor, inactiveTintColor, screen }: Props) => {
 
     return (
         <BottomTabContext.Consumer>
             {context =>
-                <TouchableOpacity style={styles.container} onPress={() => context.updateActiveIndex(index)}>
+                <TouchableOpacity style={styles.container} onPress={() => context.updateActiveIndex(index, screen)}>
                     {
                         badge && <View style={styles.badgeContainer}>
                             <Text style={styles.badgeText}>{badge}</Text>

@@ -9,11 +9,12 @@ type Props = {
     activeTintColor: String,
     inactiveTintColor: String,
     tabBarVisible: Boolean,
+
 }
 
 const TAB_BAR_HEIGHT = 50;
 
-const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveTintColor, tabBarVisible = true }: Props) => {
+const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveTintColor, tabBarVisible = true, navigation }: Props) => {
     const [activeIndex, setActiveIndex] = useState(initialRouteIndex);
 
     const shouldShowTabBar = tabBarVisible;
@@ -69,10 +70,15 @@ const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveT
         })
     }
 
+    const updateActiveIndex = (index, screen) => {
+        setActiveIndex(index);
+        navigation.replace(screen);
+    }
+
     return (
         <BottomTabContext.Provider
             value={{
-                updateActiveIndex: setActiveIndex,
+                updateActiveIndex: updateActiveIndex,
             }}
         >
             <Animated.View style={[styles.container, {
