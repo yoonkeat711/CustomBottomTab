@@ -31,7 +31,6 @@ const Calls = ({ navigation }) => {
 
             <BottomTab
                 activeTintColor={'blue'}
-                inactiveTintColor={'grey'}
                 initialRouteIndex={1}
                 tabBarVisible={tabBarVisible}
                 navigation={navigation}

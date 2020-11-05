@@ -15,6 +15,8 @@ type Props = {
     screen: String,
 }
 
+const DEFAULT_INACTIVE_TINT_COLOR = '#8E8E8F';
+
 const TabItem = ({ icon, index, iconStyle, text, textStyle, badge, onFocused, activeTintColor, inactiveTintColor, screen }: Props) => {
 
     return (
@@ -29,9 +31,9 @@ const TabItem = ({ icon, index, iconStyle, text, textStyle, badge, onFocused, ac
                     <Image
                         source={icon}
                         resizeMode={'contain'}
-                        style={[styles.iconStyle, iconStyle, { tintColor: onFocused ? activeTintColor : inactiveTintColor }]}
+                        style={[styles.iconStyle, iconStyle, { tintColor: onFocused ? activeTintColor : (inactiveTintColor || DEFAULT_INACTIVE_TINT_COLOR)}]}
                     />
-                    <Text style={[styles.fontSize, textStyle, { color: onFocused ? activeTintColor : inactiveTintColor }]}>
+                    <Text style={[styles.fontSize, textStyle, { color: onFocused ? activeTintColor : (inactiveTintColor || DEFAULT_INACTIVE_TINT_COLOR)}]}>
                         {text}
                     </Text>
                 </TouchableOpacity>
@@ -64,12 +66,10 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         paddingBottom: 12,
-        tintColor: 'grey',
     },
     text: {
-        fontSize: 12,
+        fontSize: 10,
         alignSelf: 'center',
-        color: 'grey',
     }
 })
 

@@ -31,7 +31,6 @@ const Camera = ({ navigation }) => {
             </ScrollView>
             <BottomTab
                 activeTintColor={'blue'}
-                inactiveTintColor={'grey'}
                 initialRouteIndex={3}
                 tabBarVisible={tabBarVisible}
                 navigation={navigation}

@@ -12,32 +12,24 @@ type Props = {
 
 }
 
-const TAB_BAR_HEIGHT = 50;
+const TAB_BAR_HEIGHT = 48;
 
 const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveTintColor, tabBarVisible = true, navigation }: Props) => {
     const [activeIndex, setActiveIndex] = useState(initialRouteIndex);
 
-    const shouldShowTabBar = tabBarVisible;
-    const [isTabBarHidden, setIsTabBarHidden] = React.useState(!shouldShowTabBar);
-    const [visible] = React.useState(() => new Animated.Value(shouldShowTabBar ? 1 : 0));
-    const { bottom } = useSafeAreaInsets();
-
+    const [visible] = React.useState(() => new Animated.Value(tabBarVisible ? 1 : 0));
+    const paddingBottom = useSafeAreaInsets().bottom;
+    
     React.useEffect(() => {
-        if (shouldShowTabBar) {
-            const animation = Animated.spring;
+        if (tabBarVisible) {
+            const animation = Animated.timing;
 
             animation(visible, {
                 toValue: 1,
                 useNativeDriver: true,
                 duration: 250,
-            }).start(({ finished }) => {
-                if (finished) {
-                    setIsTabBarHidden(false);
-                }
-            })
+            }).start();
         } else {
-            setIsTabBarHidden(true);
-
             const animation = Animated.timing;
 
             animation(visible, {
@@ -47,14 +39,14 @@ const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveT
 
             }).start();
         }
-    }, [visible, shouldShowTabBar]);
+    }, [visible, tabBarVisible]);
 
     const [layout, setLayout] = React.useState({
         height: 0,
         width: Dimensions.get('window').width,
     });
 
-    const handleLayout = (e) => {
+    const handleLayout = e => {
 
         const { height, width } = e.nativeEvent.layout;
 
@@ -86,7 +78,7 @@ const BottomTab = ({ children, initialRouteIndex = 0, activeTintColor, inactiveT
                     {
                         translateY: visible.interpolate({
                             inputRange: [0, 1],
-                            outputRange: [layout.height + bottom, 0]
+                            outputRange: [layout.height + paddingBottom, 0]
                         })
                     }
                 ],

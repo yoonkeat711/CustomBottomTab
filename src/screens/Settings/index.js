@@ -31,7 +31,6 @@ const Settings = ({ navigation }) => {
 
             <BottomTab
                 activeTintColor={'blue'}
-                inactiveTintColor={'grey'}
                 initialRouteIndex={4}
                 tabBarVisible={tabBarVisible}
                 navigation={navigation}

@@ -31,7 +31,6 @@ const Chats = ({ navigation }) => {
 
             <BottomTab
                 activeTintColor={'blue'}
-                inactiveTintColor={'grey'}
                 initialRouteIndex={2}
                 tabBarVisible={tabBarVisible}
                 navigation={navigation}
