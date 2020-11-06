@@ -59,6 +59,7 @@ const Chats = ({ navigation }) => {
                 <TabItem
                     icon={SettingsIcon}
                     text={'Settings'}
+                    badge={2}
                     screen={'Settings'}
                 />
             </BottomTab>

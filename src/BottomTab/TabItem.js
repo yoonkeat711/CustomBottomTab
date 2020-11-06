@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
     badgeContainer: {
         position: 'absolute',
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         alignItems: 'center',
         zIndex: 2,
+        marginTop: 3,
     },
     badgeText: {
         color: 'white',
@@ -63,9 +65,10 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     iconStyle: {
+        marginTop: 5,
         width: 30,
         height: 30,
-        paddingBottom: 12,
+        paddingBottom: 8,
     },
     text: {
         fontSize: 10,
